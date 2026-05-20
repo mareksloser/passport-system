@@ -1,0 +1,25 @@
+[Unit]
+Description=Passport Station Country - NFC Daemon
+After=network.target
+
+[Service]
+Type=simple
+User=passport
+Group=passport
+WorkingDirectory=/opt/passport-system/station-country
+Environment="PATH=/opt/passport-system/station-country/.venv/bin"
+Environment="PYTHONPATH=/opt/passport-system"
+ExecStart=/opt/passport-system/station-country/.venv/bin/python -m app.daemon
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+# Bezpečnost
+NoNewPrivileges=true
+
+# NFC HW přístup
+SupplementaryGroups=plugdev dialout i2c
+
+[Install]
+WantedBy=multi-user.target

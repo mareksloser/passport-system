@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=800, height=480, initial-scale=1.0, user-scalable=no">
+    <title>Srdcem pro Ondráška</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="watercolor-bg"></div>
+
+    <!-- ZÁKLADNÍ OBRAZOVKA -->
+    <div id="screen-default" class="screen visible">
+        <div class="default-wrap">
+            <img src="/assets/logo.svg" alt="Srdcem pro Ondráška" class="logo-small">
+            <div class="country-default-area">
+                <img id="country-default-img" src="/assets/country-default.svg" alt="" class="country-img">
+                <h1 id="country-name" class="country-title">Načítám…</h1>
+                <p class="hint">Přilož pas ⤵</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCAN -->
+    <div id="screen-scan" class="screen">
+        <div class="scan-layout">
+            <div class="scan-top">
+                <img src="/assets/logo.svg" alt="" class="logo-tiny">
+                <img id="country-custom-img" src="/assets/country-custom.svg" alt="" class="country-custom">
+            </div>
+            <p id="greeting-text" class="greeting"></p>
+            <div class="fact-area">
+                <span class="fact-label">Věděl si že:</span>
+                <p id="fact-text" class="fact"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMPLETION -->
+    <div id="screen-completion" class="screen">
+        <div class="completion-wrap">
+            <div class="party">🎉</div>
+            <p id="completion-text" class="completion-text"></p>
+            <img src="/assets/logo.svg" alt="" class="logo-small">
+        </div>
+    </div>
+
+    <!-- ERROR -->
+    <div id="screen-error" class="screen">
+        <div class="error-wrap">
+            <div class="error-icon">⚠️</div>
+            <p id="error-text" class="error-text"></p>
+        </div>
+    </div>
+
+    <!-- Conn indicator -->
+    <div id="conn-indicator" class="conn-indicator">●</div>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+# Konfigurace stanoviště - zkopíruj do /boot/station.conf na každém RPi
+#
+# COUNTRY_INDEX MUSÍ odpovídat indexu v shared/countries.py:
+#   0  USA Hawaii
+#   1  Francie
+#   2  Japonsko
+#   3  Egypt
+#   4  Itálie
+#   5  Dánsko
+#   6  Austrálie
+#   7  Česká republika
+#   8  Velká Británie
+#   9  Indie
+#  10  Antarktida
+
+COUNTRY_INDEX=2
+
+# NFC zařízení - viz nfcpy docs
+# - "usb" pro USB PN532 (autodetekce)
+# - "tty:USB0:pn532" pro USB-UART (typicky CP210x adapter)
+# - "tty:AMA0:pn532" pro Raspberry GPIO UART
+# - "i2c:/dev/i2c-1:pn532" pro I2C
+# - "mock" pro vývoj bez HW
+NFC_DEVICE=tty:USB0:pn532
+
+# Port HTTP serveru (frontend + SSE)
+KIOSK_PORT=8090
+
+# Doba zobrazení scan obrazovky před návratem na default (sekundy)
+RETURN_TO_DEFAULT_SECONDS=20
+
+# Doba zobrazení dokončovací obrazovky (sekundy)
+COMPLETION_SHOW_SECONDS=45
+
+# Debounce mezi opakovanými scany stejného čipu
+DEBOUNCE_SECONDS=2.0
+
+# Cesta pro audit log
+LOG_DIR=/var/log/passport

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <defs>
+    <radialGradient id="globe">
+      <stop offset="0%" stop-color="#7fb6c2"/>
+      <stop offset="100%" stop-color="#3a8f9e"/>
+    </radialGradient>
+  </defs>
+  <circle cx="120" cy="120" r="105" fill="url(#globe)"/>
+  <circle cx="120" cy="120" r="105" fill="none" stroke="#fff" stroke-width="2" opacity="0.4"/>
+  <!-- Meridians -->
+  <ellipse cx="120" cy="120" rx="105" ry="35" fill="none" stroke="#fff" stroke-width="2" opacity="0.3"/>
+  <ellipse cx="120" cy="120" rx="35" ry="105" fill="none" stroke="#fff" stroke-width="2" opacity="0.3"/>
+  <ellipse cx="120" cy="120" rx="70" ry="105" fill="none" stroke="#fff" stroke-width="2" opacity="0.3"/>
+  <text x="120" y="135" font-family="serif" font-size="50" text-anchor="middle">🌍</text>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <defs>
+    <radialGradient id="bg-CZ" cx="40%" cy="40%">
+      <stop offset="0%" stop-color="#11457e" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#11457e" stop-opacity="0.7"/>
+    </radialGradient>
+  </defs>
+  <circle cx="120" cy="120" r="105" fill="url(#bg-CZ)" stroke="#d7141a" stroke-width="6"/>
+  <text x="120" y="105" font-family="Georgia, serif" font-size="60" font-weight="bold"
+        text-anchor="middle" fill="white" stroke="#d7141a" stroke-width="1.5">CZ</text>
+  <text x="120" y="160" font-family="Georgia, serif" font-size="22" font-weight="bold"
+        text-anchor="middle" fill="white">Česká republika</text>
+</svg>

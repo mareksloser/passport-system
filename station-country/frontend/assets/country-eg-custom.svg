@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 130" width="200" height="130">
+  <!-- Pozadí -->
+  <rect x="0" y="0" width="200" height="130" rx="12" fill="#ce1126" opacity="0.85"/>
+  <!-- Akcent pruh -->
+  <rect x="0" y="0" width="200" height="20" fill="#fac807"/>
+  <rect x="0" y="110" width="200" height="20" fill="#fac807"/>
+  <!-- Kód -->
+  <text x="100" y="78" font-family="Georgia, serif" font-size="44" font-weight="bold"
+        text-anchor="middle" fill="white">EG</text>
+  <!-- Název -->
+  <text x="100" y="103" font-family="Georgia, serif" font-size="13" font-weight="600"
+        text-anchor="middle" fill="white">Egypt</text>
+</svg>
