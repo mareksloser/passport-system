@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=800, height=480, initial-scale=1.0, user-scalable=no">
+    <title>Pokladna – Srdcem pro Ondráška</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="watercolor-bg"></div>
+
+    <!-- DEFAULT - klidná uvítací obrazovka -->
+    <div id="screen-default" class="screen visible">
+        <div class="default-wrap">
+            <img src="/assets/logo.svg" alt="Srdcem pro Ondráška" class="logo">
+            <h1 id="checkpoint-label" class="checkpoint-label">Pokladna</h1>
+            <div class="default-icon">🎫</div>
+            <p class="default-hint">Přilož pas na čtečku ⤵</p>
+        </div>
+    </div>
+
+    <!-- ACCEPT - validní pas -->
+    <div id="screen-accept" class="screen screen-accept">
+        <div class="accept-wrap">
+            <div class="accept-icon">✅</div>
+            <div class="accept-content">
+                <h2 class="accept-title">Přijato</h2>
+                <div class="passport-info">
+                    <div class="passport-name">
+                        <span id="passport-gender-icon" class="gender-icon">👦</span>
+                        <span id="passport-name" class="name-text">Jméno</span>
+                    </div>
+                    <div class="passport-meta">
+                        <span id="passport-year" class="meta-item">2014</span>
+                    </div>
+                    <div class="progress-wrap">
+                        <div class="progress-track">
+                            <div id="progress-fill" class="progress-fill"></div>
+                        </div>
+                        <div class="progress-label">
+                            <span id="progress-text">0 / 11 zemí</span>
+                            <span id="completion-badge" class="completion-badge" hidden>🎉 Dokončil</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DENY - neplatný pas -->
+    <div id="screen-deny" class="screen screen-deny">
+        <div class="deny-wrap">
+            <div class="deny-icon">⛔</div>
+            <h2 class="deny-title">Pas neplatný</h2>
+            <p id="deny-message" class="deny-message">Zkontroluj pas.</p>
+        </div>
+    </div>
+
+    <!-- Conn indicator -->
+    <div id="conn-indicator" class="conn-indicator">●</div>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>

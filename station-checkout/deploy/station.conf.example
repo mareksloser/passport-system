@@ -1,0 +1,27 @@
+# Konfigurace POKLADNY
+# Zkopíruj na RPi 1GB do /boot/station.conf nebo /etc/passport/station.conf
+
+# NFC zařízení
+NFC_DEVICE=tty:USB0:pn532
+
+# HTTP port (pro lokální Chromium kiosk)
+HTTP_PORT=8090
+
+# Identifikace pokladny (zobrazí se na displeji)
+CHECKPOINT_LABEL=Pokladna 1
+
+# Doba, jak dlouho zobrazit výsledek na displeji (sekundy)
+SHOW_RESULT_SECONDS=5
+
+# Debounce - jak dlouho ignorovat opakovaný scan stejného čipu
+DEBOUNCE_SECONDS=2.0
+
+# === GPIO LED + bzučák (volitelné) ===
+# Pokud zapneš, nastav správně piny dle zapojení
+GPIO_ENABLED=true
+GPIO_LED_GREEN=17
+GPIO_LED_RED=27
+GPIO_BUZZER=22
+
+# Audit log
+LOG_DIR=/var/log/passport

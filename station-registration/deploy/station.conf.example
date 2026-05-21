@@ -1,0 +1,14 @@
+# Konfigurace REGISTRAČNÍ stanice
+# Zkopíruj na RPi 2GB do /boot/station.conf nebo /etc/passport/station.conf
+
+# NFC zařízení - viz nfcpy docs
+NFC_DEVICE=tty:USB0:pn532
+
+# HTTP port (notebook se připojí přes prohlížeč)
+HTTP_PORT=8000
+
+# Debounce pro registraci - kratší (operátor často znovu přiloží čip)
+DEBOUNCE_SECONDS=0.5
+
+# Cesty
+LOG_DIR=/var/log/passport

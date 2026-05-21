@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <defs>
+    <radialGradient id="logo-bg" cx="50%" cy="50%">
+      <stop offset="0%" stop-color="#b8dde5" stop-opacity="0.95"/>
+      <stop offset="70%" stop-color="#d4ebec" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#e8f3f4" stop-opacity="0.1"/>
+    </radialGradient>
+  </defs>
+  <circle cx="150" cy="150" r="135" fill="url(#logo-bg)"/>
+  <!-- Srdce -->
+  <path d="M 150 215
+           C 150 215, 95 175, 95 135
+           C 95 110, 115 95, 132 95
+           C 144 95, 150 103, 150 110
+           C 150 103, 156 95, 168 95
+           C 185 95, 205 110, 205 135
+           C 205 175, 150 215, 150 215 Z"
+        fill="#7fb6c2" stroke="#5a98a5" stroke-width="2.5"/>
+  <text x="150" y="140" font-family="Georgia, serif" font-size="17" font-style="italic"
+        text-anchor="middle" fill="#1f3a4a" font-weight="500">Srdcem pro</text>
+  <text x="150" y="172" font-family="Brush Script MT, cursive" font-size="30" font-style="italic"
+        text-anchor="middle" fill="#1f3a4a" font-weight="700">Ondráška</text>
+</svg>

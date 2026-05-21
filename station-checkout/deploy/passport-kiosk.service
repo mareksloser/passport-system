@@ -1,0 +1,35 @@
+[Unit]
+Description=Passport Checkout - Chromium Kiosk
+After=passport-checkout.service graphical.target
+Wants=passport-checkout.service
+
+[Service]
+Type=simple
+User=passport
+Group=passport
+Environment="DISPLAY=:0"
+Environment="XAUTHORITY=/home/passport/.Xauthority"
+
+# Počkej až daemon je naživu
+ExecStartPre=/bin/bash -c 'until curl -s http://localhost:8090/health > /dev/null 2>&1; do sleep 1; done'
+
+ExecStart=/usr/bin/chromium-browser \
+    --kiosk \
+    --window-size=800,480 \
+    --window-position=0,0 \
+    --noerrdialogs \
+    --disable-translate \
+    --no-first-run \
+    --fast \
+    --fast-start \
+    --disable-features=TranslateUI \
+    --disk-cache-dir=/tmp/chromium-cache \
+    --overscroll-history-navigation=0 \
+    --disable-pinch \
+    http://localhost:8090
+
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=graphical.target

@@ -1,0 +1,23 @@
+[Unit]
+Description=Passport Registration Station
+After=network.target cups.service
+Wants=network.target
+
+[Service]
+Type=simple
+User=passport
+Group=passport
+WorkingDirectory=/opt/passport-system/station-registration
+Environment="PATH=/opt/passport-system/station-registration/.venv/bin"
+Environment="PYTHONPATH=/opt/passport-system"
+ExecStart=/opt/passport-system/station-registration/.venv/bin/python -m app.daemon
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+# NFC HW + tisk
+SupplementaryGroups=plugdev dialout i2c lp
+
+[Install]
+WantedBy=multi-user.target

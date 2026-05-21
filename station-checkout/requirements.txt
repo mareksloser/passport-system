@@ -1,0 +1,4 @@
+aiohttp==3.10.5
+nfcpy==1.0.4
+# RPi.GPIO se instaluje jen na Raspberry Pi - není povinné pro vývoj
+RPi.GPIO==0.7.1; platform_machine == "armv7l" or platform_machine == "aarch64"

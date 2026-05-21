@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imigrační oddělení – Srdcem pro Ondráška</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="watercolor-bg"></div>
+
+    <header class="header">
+        <img src="/assets/logo.svg" alt="Srdcem pro Ondráška" class="logo">
+        <div class="header-text">
+            <h1>Imigrační oddělení</h1>
+            <p>Registrace nových cestovatelů</p>
+        </div>
+        <div class="status-indicator">
+            <span id="conn-dot" class="conn-dot"></span>
+            <span id="conn-label">Připojuji…</span>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- LEVÝ SLOUPEC: Stav čipu -->
+        <section class="card card-chip">
+            <h2>Pas (NFC čip)</h2>
+
+            <div id="chip-state-empty" class="chip-state visible">
+                <div class="big-icon">📡</div>
+                <p class="chip-msg">Polož pas na čtečku</p>
+                <p class="chip-sub">Systém automaticky rozezná, zda je pas prázdný nebo již zaregistrovaný.</p>
+            </div>
+
+            <div id="chip-state-blank" class="chip-state">
+                <div class="big-icon">✨</div>
+                <p class="chip-msg chip-ok">Prázdný pas</p>
+                <p class="chip-sub">Připraven k registraci. Vyplň formulář vpravo.</p>
+            </div>
+
+            <div id="chip-state-registered" class="chip-state">
+                <div class="big-icon">📔</div>
+                <p class="chip-msg chip-warning">Pas je již zaregistrován</p>
+                <div class="existing-passport">
+                    <div class="ep-row"><span class="ep-label">Jméno:</span> <span id="existing-name" class="ep-value">—</span></div>
+                    <div class="ep-row"><span class="ep-label">Pohlaví:</span> <span id="existing-gender">—</span></div>
+                    <div class="ep-row"><span class="ep-label">Rok narození:</span> <span id="existing-year">—</span></div>
+                    <div class="ep-row"><span class="ep-label">Navštíveno zemí:</span> <span id="existing-countries">—</span> / 11</div>
+                    <div class="ep-row" id="existing-completed-row" hidden><span class="ep-completed-badge">🎉 Dokončil cestu</span></div>
+                </div>
+                <p class="chip-sub">Chceš pas přepsat? Zaškrtni „Přepsat existující" ve formuláři.</p>
+            </div>
+
+            <div id="chip-state-invalid" class="chip-state">
+                <div class="big-icon">⚠️</div>
+                <p class="chip-msg chip-error">Neplatný pas</p>
+                <p class="chip-sub">Tento čip nepatří k naší akci nebo má poškozená data. Použij jiný čip.</p>
+            </div>
+        </section>
+
+        <!-- PRAVÝ SLOUPEC: Formulář -->
+        <section class="card card-form">
+            <h2>Údaje cestovatele</h2>
+            <form id="register-form">
+                <div class="field">
+                    <label for="first_name">Křestní jméno</label>
+                    <input
+                        type="text"
+                        id="first_name"
+                        name="first_name"
+                        maxlength="15"
+                        autocomplete="off"
+                        placeholder="např. Tomáš"
+                        required>
+                    <p class="field-hint">Max 15 znaků. Háčky/čárky OK, mohou ale zabrat víc místa.</p>
+                </div>
+
+                <div class="field">
+                    <label>Pohlaví</label>
+                    <div class="radio-group big">
+                        <label class="radio">
+                            <input type="radio" name="gender" value="M" required>
+                            <span class="radio-icon">👦</span>
+                            <span class="radio-label">Chlapec</span>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="gender" value="F">
+                            <span class="radio-icon">👧</span>
+                            <span class="radio-label">Dívka</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="birth_year">Rok narození</label>
+                    <input
+                        type="number"
+                        id="birth_year"
+                        name="birth_year"
+                        min="2005"
+                        max="2025"
+                        value="2014"
+                        required>
+                </div>
+
+                <div class="field" id="overwrite-field" hidden>
+                    <label class="checkbox">
+                        <input type="checkbox" id="force_overwrite" name="force_overwrite">
+                        <span>⚠️ Přepsat existující pas (smaže historii cestování)</span>
+                    </label>
+                </div>
+
+                <button type="submit" id="submit-btn" class="btn btn-primary btn-big" disabled>
+                    Zaregistrovat na čip
+                </button>
+
+                <p id="form-status" class="form-status" hidden></p>
+            </form>
+        </section>
+    </main>
+
+    <!-- Toast -->
+    <div id="toast" class="toast" hidden></div>
+
+    <!-- Modal pro úspěch -->
+    <div id="success-modal" class="modal" hidden>
+        <div class="modal-content">
+            <div class="success-icon">✅</div>
+            <h2>Pas zaregistrován!</h2>
+            <p id="success-text"></p>
+            <p class="success-hint">Můžeš odebrat pas ze čtečky a předat cestovateli.</p>
+            <button type="button" id="close-modal" class="btn btn-primary">Pokračovat</button>
+        </div>
+    </div>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>

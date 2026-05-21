@@ -1,0 +1,316 @@
+/* ============================================================
+   Srdcem pro Ondráška – Pokladna
+   Target: 7" RPi Touch Display 800x480
+   Logika: velké barevné stavy viditelné z dálky
+   ============================================================ */
+
+:root {
+    --color-bg-base: #f0f5f5;
+    --color-watercolor-1: #b8dde5;
+    --color-watercolor-2: #d4ebec;
+    --color-watercolor-3: #e8f3f4;
+    --color-text-dark: #2b3e4a;
+    --color-text-darker: #1f2d36;
+    --color-accent-teal: #3a8f9e;
+    --color-accept-bg: #2e7d32;
+    --color-accept-bg-light: #4caf50;
+    --color-deny-bg: #b71c1c;
+    --color-deny-bg-light: #e53935;
+    --color-success: #4caf50;
+    --color-error: #c43030;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 800px;
+    height: 480px;
+    overflow: hidden;
+    background: var(--color-bg-base);
+    color: var(--color-text-dark);
+    font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
+    cursor: none;
+    user-select: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Akvarelové pozadí (jen default screen) */
+.watercolor-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+        radial-gradient(ellipse 400px 300px at 15% 25%, var(--color-watercolor-1) 0%, transparent 60%),
+        radial-gradient(ellipse 350px 250px at 85% 70%, var(--color-watercolor-2) 0%, transparent 60%),
+        radial-gradient(ellipse 500px 200px at 50% 100%, var(--color-watercolor-3) 0%, transparent 70%),
+        var(--color-bg-base);
+    opacity: 0.7;
+}
+
+/* Obrazovky */
+.screen {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+.screen.visible {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease;
+}
+
+/* ============================================================
+   DEFAULT
+   ============================================================ */
+.default-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 16px;
+    padding: 30px;
+}
+
+.logo {
+    width: 110px;
+    height: 110px;
+}
+
+.checkpoint-label {
+    font-family: Georgia, serif;
+    font-size: 36px;
+    color: var(--color-accent-teal);
+    font-weight: 700;
+}
+
+.default-icon {
+    font-size: 90px;
+    line-height: 1;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.default-hint {
+    font-size: 26px;
+    color: var(--color-accent-teal);
+    font-weight: 600;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+/* ============================================================
+   ACCEPT (zelená)
+   ============================================================ */
+.screen-accept {
+    background: linear-gradient(135deg,
+        var(--color-accept-bg-light) 0%,
+        var(--color-accept-bg) 100%);
+    color: white;
+}
+
+.accept-wrap {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 30px 40px;
+    width: 100%;
+    animation: scale-in 0.4s ease-out;
+}
+
+@keyframes scale-in {
+    0% { transform: scale(0.7); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.accept-icon {
+    font-size: 130px;
+    line-height: 1;
+    flex-shrink: 0;
+    animation: pop-icon 0.5s ease-out;
+}
+
+@keyframes pop-icon {
+    0% { transform: scale(0); }
+    60% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+.accept-content {
+    flex: 1;
+}
+
+.accept-title {
+    font-family: Georgia, serif;
+    font-size: 56px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.passport-info {
+    margin-top: 14px;
+}
+
+.passport-name {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 8px;
+}
+
+.gender-icon { font-size: 42px; }
+
+.name-text {
+    font-size: 44px;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.passport-meta {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    opacity: 0.85;
+}
+
+.meta-item {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+/* Progress bar */
+.progress-wrap {
+    width: 100%;
+    max-width: 420px;
+}
+
+.progress-track {
+    width: 100%;
+    height: 16px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.progress-fill {
+    height: 100%;
+    background: white;
+    border-radius: 8px;
+    width: 0%;
+    transition: width 0.6s ease-out;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.completion-badge {
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--color-accept-bg);
+    padding: 4px 14px;
+    border-radius: 14px;
+    font-size: 18px;
+    font-weight: 700;
+    animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* ============================================================
+   DENY (červená)
+   ============================================================ */
+.screen-deny {
+    background: linear-gradient(135deg,
+        var(--color-deny-bg-light) 0%,
+        var(--color-deny-bg) 100%);
+    color: white;
+}
+
+.deny-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 20px;
+    padding: 30px;
+    animation: shake-in 0.5s ease-out;
+}
+
+@keyframes shake-in {
+    0% { transform: translateX(0); opacity: 0; }
+    20% { transform: translateX(-20px); opacity: 1; }
+    40% { transform: translateX(20px); }
+    60% { transform: translateX(-12px); }
+    80% { transform: translateX(8px); }
+    100% { transform: translateX(0); }
+}
+
+.deny-icon {
+    font-size: 150px;
+    line-height: 1;
+    animation: pop-icon 0.5s ease-out;
+}
+
+.deny-title {
+    font-family: Georgia, serif;
+    font-size: 56px;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: -0.5px;
+}
+
+.deny-message {
+    font-size: 26px;
+    font-weight: 600;
+    max-width: 700px;
+    line-height: 1.3;
+    opacity: 0.95;
+}
+
+/* ============================================================
+   Connection indicator
+   ============================================================ */
+.conn-indicator {
+    position: fixed;
+    top: 6px;
+    right: 8px;
+    font-size: 14px;
+    z-index: 100;
+    color: var(--color-success);
+    opacity: 0.3;
+}
+.conn-indicator.fail {
+    color: var(--color-error);
+    opacity: 1;
+    animation: pulse 1s infinite;
+}
